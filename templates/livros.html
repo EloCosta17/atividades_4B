@@ -2,6 +2,15 @@
 
 {% block conteudo %}
     <h2>Biblioteca</h2>
-    <p>Esta aplicação usará uma lista de dicionários para representar livros.</p>
-    <p>Implemente a rota <code>/livros</code> para começar.</p>
+    {% for livro in livros %}
+        <p>{{ livro["titulo"] }} — {{ livro["autor"] }}</p>
+    {% endfor %}
+    {% if livro["disponivel"] %}
+        <span>Disponível</span>
+    {% else %}
+        <span>Indisponível</span>
+    {% endif %}
+    <a href="{{ url_for('detalhe_livro', livro_id=livro['id']) }}">Ver detalhes</a>
+    <a href="{{ url_for('livros_disponiveis', livros=livros_disponiveis)}}">Ver detalhes</a>
+
 {% endblock %}

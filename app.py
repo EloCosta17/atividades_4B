@@ -36,6 +36,30 @@ def inicio():
 def listar_livros():
     return render_template("livros.html", livros=livros)
 
+@app.route("/livros/<int:livro_id>")
+def detalhe_livro(livro_id):
+    livro_encontrado = None
+    for livro in livros:
+        if livro["id"] == livro_id:
+            livro_encontrado = livro
+            print(f"Livro encontrado: {livro["titulo"]} ({livro["autor"]})")
+        else:
+            print("Livro não encontrado.")
+
+@app.route("/livros/disponiveis")
+def livros_disponiveis():
+    livros_disponiveis = []
+    for livro in livros:
+        if livro["disponivel"]:
+            livros_disponiveis.append(livro)
+    return render_template("livros.html",livros=livros_disponiveis)
+
+    
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

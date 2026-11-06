@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <h2>Detalhes</h2>
+    {% for livro in livros %}
+        <p>{{ livro["titulo"] }} — {{ livro["autor"] } - {{livro["ano"]}} - {{livro["disponivel"]}}}</p>
+        {% if livro["disponivel"] %}
+            <span>Este livro está disponível para empréstimo.</span>
+        {% else %}
+            <span>Este livro não está disponível no momento.</span>
+
+    {% endfor %}
+    <a href="{{ url_for('livros']) }}">Voltar para o início</a>
+{% endblock %}
